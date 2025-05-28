@@ -26,7 +26,7 @@ __all__ = [
         'donuts', 'read_pdb', 'get_distance_matrix', 'plot_3d', 'animate_ax'
         ]
 
-def donuts(df, numcols=2, thres=2, maxvals=15, title=u"Valores de las Variables Categóricas", ytitle=None, lw=6):
+def donuts(df, numcols=2, thres=2, maxvals=15, title=None, ytitle=None, lw=6):
     """
     Creates a donut chart for every categorical variable in a pandas dataframe.
     
@@ -130,7 +130,7 @@ def get_distance_matrix(df, only_CA=True):
                          index=df.index, columns=df.index)
     # Reduce to the minimum distance between the residues
     try:
-        dists = dists.groupby('residue').min().groupby('residue', axis=1).min()
+        dists = dists.groupby('residue').min().T.groupby('residue').min().T
     except Exception as e:
         print("get_distance_matrix error: {}".format(e))
     return dists
