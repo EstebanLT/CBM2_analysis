@@ -1,0 +1,1 @@
+for i in $(cat ../03-find_motifs/uniprot_ids.txt); do wget https://alphafold.ebi.ac.uk/files/AF-$i-F1-model_v4.pdb; wget https://alphafold.ebi.ac.uk/files/AF-$i-F1-predicted_aligned_error_v4.json; done
